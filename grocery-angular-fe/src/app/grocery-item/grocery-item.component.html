@@ -2,9 +2,10 @@
   <span class="grocery-item-name">{{groceryItem.name}}</span>
   <div class="grocery-item-amount">{{groceryItem.amount}}</div>
   <div class="grocery-item-desc">{{groceryItem.desc}}</div>
-  <select class="grocery-item-low">
-    <option class="grocery-item-low-true">Low!</option>
-    <option class="grocery-item-low-false">Fine :)</option>
+  <div class="grocery-item-low" [hidden]="editing">{{groceryItem.low}}</div>
+  <select class="grocery-item-low" [hidden]="!editing">
+    <option class="grocery-item-low-true">True</option>
+    <option class="grocery-item-low-false">False</option>
   </select>
-  <button class="edit-grocery-item-btn" (click)="onClickToggleEditing()">Edit Item</button>
+  <button class="edit-grocery-item-btn" (click)="onClickToggleEditing()">{{editing ? "Save" : "Edit Item"}}</button>
 </div>
