@@ -20,5 +20,12 @@ export class GroceryService {
     });
     return groceryList;
   }
+
+  updateGrocery(grocerId, updatedGrocery): void {
+    console.log(updatedGrocery);
+    this.http.put(`http://localhost:3000/api/groceries/${grocerId}`, updatedGrocery).subscribe((res: Response) => {
+      console.log(res);
+    });
+  }
 }
 

@@ -1,11 +1,21 @@
 <div class="grocery-item-container">
-  <span class="grocery-item-name">{{groceryItem.name}}</span>
-  <div class="grocery-item-amount">{{groceryItem.amount}}</div>
-  <div class="grocery-item-desc">{{groceryItem.desc}}</div>
-  <div class="grocery-item-low" [hidden]="editing">{{groceryItem.low}}</div>
-  <select class="grocery-item-low" [hidden]="!editing">
+  <span class="grocery-item-name" [hidden]="editing">{{name}}</span>
+  <span class="grocery-item-name" [hidden]="!editing">
+    <input type="text" [ngModel]="name" (change)="onChangeName($event)">
+  </span>
+  <div class="grocery-item-amount" [hidden]="editing">{{amount}}</div>
+  <span class="grocery-item-name" [hidden]="!editing">
+    <input type="number" [ngModel]="amount" (change)="onChangeAmount($event)">
+  </span>
+  <div class="grocery-item-desc" [hidden]="editing">{{desc}}</div>
+  <span class="grocery-item-name" [hidden]="!editing">
+    <input type="text" [ngModel]="desc" (change)="onChangeDesc($event)">
+  </span>
+  <div class="grocery-item-low" [hidden]="editing">{{low}}</div>
+  <select class="grocery-item-low" [hidden]="!editing" [ngModel]="low" (change)="onChangeLow($event)">
     <option class="grocery-item-low-true">True</option>
     <option class="grocery-item-low-false">False</option>
   </select>
-  <button class="edit-grocery-item-btn" (click)="onClickToggleEditing()">{{editing ? "Save" : "Edit Item"}}</button>
+  <button class="edit-grocery-item-btn" (click)="onClickEdit()" [hidden]="editing">Edit Item</button>
+  <button class="save-grocery-item-btn" (click)="onClickSave()" [hidden]="!editing">Save</button>
 </div>
