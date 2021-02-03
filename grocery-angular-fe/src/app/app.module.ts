@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {GroceryService} from './services/grocery.service.client';
 import { GroceryListComponent } from './grocery-list/grocery-list.component';
 import { GroceryItemComponent } from './grocery-item/grocery-item.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { GroceryItemComponent } from './grocery-item/grocery-item.component';
     GroceryItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     GroceryService

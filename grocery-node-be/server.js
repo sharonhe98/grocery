@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+require('./data/db')();
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin",
         "http://localhost:4200");
@@ -13,7 +15,11 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-    res.send("hello world").then(console.log("server started!"));
+    console.log(res);
+    res.send("hello world");
 });
+
+const groceryService = require('./data/services/grocery.service.server');
+groceryService(app);
 
 app.listen(3000);
