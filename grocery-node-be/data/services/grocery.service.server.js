@@ -22,13 +22,20 @@ module.exports = function (app) {
     const updateGrocery = (req, res) => {
         let gid = mongoose.Types.ObjectId(req.params.gid);
         let grocery = req.body;
-        console.log(req);
         groceryModel.updateGrocery(gid, grocery).then(grocery => {
             res.send(grocery);
         });
     };
 
+    const addGrocery = (req, res) => {
+        let grocery = req.body;
+        groceryModel.addGrocery(grocery).then(groc => {
+            res.send(groc);
+        })
+    }
+
     app.get('/api/groceries', findAllGroceries);
     app.get('/api/groceries/:gid', findGroceryById);
     app.put('/api/groceries/:gid', jsonParser, updateGrocery);
+    app.post('/api/groceries', jsonParser, addGrocery);
 };

@@ -22,10 +22,11 @@ export class GroceryService {
   }
 
   updateGrocery(grocerId, updatedGrocery): void {
-    console.log(updatedGrocery);
-    this.http.put(`http://localhost:3000/api/groceries/${grocerId}`, updatedGrocery).subscribe((res: Response) => {
-      console.log(res);
-    });
+    this.http.put(`http://localhost:3000/api/groceries/${grocerId}`, updatedGrocery).subscribe();
+  }
+
+  addGrocery(grocery): void {
+    this.http.post('http://localhost:3000/api/groceries', grocery).subscribe();
   }
 }
 

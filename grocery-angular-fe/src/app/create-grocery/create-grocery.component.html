@@ -1,0 +1,18 @@
+<div class="create-grocery-item">
+  <span class="create-grocery-name">
+    <input class="create-grocery-name-input" type="text" [ngModel]="groceryName" (change)="onChangeName($event)">
+  </span>
+  <span class="create-grocery-amount">
+    <input class="create-grocery-name-input" type="number" [ngModel]="groceryAmount" (change)="onChangeAmount($event)">
+  </span>
+  <span class="create-grocery-desc">
+    <input class="create-grocery-name-input" type="text" [ngModel]="groceryDesc" (change)="onChangeDesc($event)">
+  </span>
+  <span class="create-grocery-low">
+   <select class="create-grocery-low" [ngModel]="groceryLow" (change)="onChangeLow($event)">
+    <option class="create-grocery-low-true">True</option>
+    <option class="create-grocery-low-false">False</option>
+  </select>
+  </span>
+  <button class="create-grocery-btn" (click)="onClickSave()">Add New Grocery</button>
+</div>

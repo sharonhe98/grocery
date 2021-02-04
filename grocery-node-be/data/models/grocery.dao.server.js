@@ -11,12 +11,16 @@ findGroceryById = (id) => {
 }
 
 updateGrocery = (id, grocery) => {
-    console.log(grocery);
     return groceryModel.findOneAndUpdate({_id: id}, grocery, {new: true, useFindAndModify: false});
 };
+
+addGrocery = (grocery) => {
+    return groceryModel.create(grocery);
+}
 
 module.exports = {
     findAllGroceries,
     findGroceryById,
-    updateGrocery
+    updateGrocery,
+    addGrocery,
 };
