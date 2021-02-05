@@ -1,21 +1,21 @@
-<div class="grocery-item-container">
-  <span class="grocery-item-name" [hidden]="editing">{{name}}</span>
-  <span class="grocery-item-name" [hidden]="!editing">
+<div class="grocery-item-container container row">
+  <div class="grocery-item-name col-md" [hidden]="editing">{{name}}</div>
+  <div class="grocery-item-name col-md" [hidden]="!editing">
     <input type="text" [ngModel]="name" (change)="onChangeName($event)">
-  </span>
-  <div class="grocery-item-amount" [hidden]="editing">{{amount}}</div>
-  <span class="grocery-item-name" [hidden]="!editing">
+  </div>
+  <div class="grocery-item-amount col-1" [hidden]="editing">{{amount}}</div>
+  <div class="grocery-item-name col-1" [hidden]="!editing">
     <input type="number" [ngModel]="amount" (change)="onChangeAmount($event)">
-  </span>
-  <div class="grocery-item-desc" [hidden]="editing">{{desc}}</div>
-  <span class="grocery-item-name" [hidden]="!editing">
+  </div>
+  <div class="grocery-item-desc col-4" [hidden]="editing">{{desc}}</div>
+  <div class="grocery-item-name col-4" [hidden]="!editing">
     <input type="text" [ngModel]="desc" (change)="onChangeDesc($event)">
-  </span>
-  <div class="grocery-item-low" [hidden]="editing">{{low}}</div>
-  <select class="grocery-item-low" [hidden]="!editing" [ngModel]="low" (change)="onChangeLow($event)">
+  </div>
+  <div class="grocery-item-low col-md" [hidden]="editing">{{low}}</div>
+  <select class="grocery-item-low col-md" [hidden]="!editing" [ngModel]="low" (change)="onChangeLow($event)">
     <option class="grocery-item-low-true">True</option>
     <option class="grocery-item-low-false">False</option>
   </select>
-  <button class="edit-grocery-item-btn" (click)="onClickEdit()" [hidden]="editing">Edit Item</button>
-  <button class="save-grocery-item-btn" (click)="onClickSave()" [hidden]="!editing">Save</button>
+  <button class="edit-grocery-item-btn btn col-md" (click)="onClickEdit()" [hidden]="editing">Edit Item</button>
+  <button class="save-grocery-item-btn btn col-md" (click)="onClickSave()" [hidden]="!editing">Save</button>
 </div>

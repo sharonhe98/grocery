@@ -1,3 +1,6 @@
-<div class="grocery-list-container" *ngFor="let grocery of groceryList">
-  <app-grocery-item [groceryItem]="grocery"></app-grocery-item>
+<div class="grocery-list-container container">
+  <h3>Groceries:</h3>
+  <div class="grocery-list" *ngFor="let grocery of groceryList">
+    <app-grocery-item [groceryItem]="grocery"></app-grocery-item>
+  </div>
 </div>

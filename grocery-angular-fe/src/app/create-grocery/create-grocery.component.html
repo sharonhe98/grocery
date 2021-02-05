@@ -1,18 +1,24 @@
-<div class="create-grocery-item">
-  <span class="create-grocery-name">
-    <input class="create-grocery-name-input" type="text" [ngModel]="groceryName" (change)="onChangeName($event)">
-  </span>
-  <span class="create-grocery-amount">
-    <input class="create-grocery-name-input" type="number" [ngModel]="groceryAmount" (change)="onChangeAmount($event)">
-  </span>
-  <span class="create-grocery-desc">
-    <input class="create-grocery-name-input" type="text" [ngModel]="groceryDesc" (change)="onChangeDesc($event)">
-  </span>
-  <span class="create-grocery-low">
-   <select class="create-grocery-low" [ngModel]="groceryLow" (change)="onChangeLow($event)">
-    <option class="create-grocery-low-true">True</option>
-    <option class="create-grocery-low-false">False</option>
-  </select>
-  </span>
-  <button class="create-grocery-btn" (click)="onClickSave()">Add New Grocery</button>
+<div class="create-grocery-item container">
+  <h3>Create New Grocery</h3>
+  <div class="create-grocery-name grocery-input row">
+    <label class="create-grocery-name-label grocery-input-label col-2">Grocery Name: </label>
+    <input class="create-grocery-name-input col-md" type="text" [ngModel]="groceryName" (change)="onChangeName($event)">
+  </div>
+  <div class="create-grocery-amount grocery-input row">
+    <label class="create-grocery-name-label grocery-input-label col-2">Amount of Grocery: </label>
+    <input class="create-grocery-name-input col-md" type="number" [ngModel]="groceryAmount"
+           (change)="onChangeAmount($event)">
+  </div>
+  <div class="create-grocery-desc grocery-input row">
+    <label class="create-grocery-name-label grocery-input-label col-2">Description of Grocery: </label>
+    <input class="create-grocery-name-input col-md" type="text" [ngModel]="groceryDesc" (change)="onChangeDesc($event)">
+  </div>
+<!--  <div class="create-grocery-low">-->
+<!--    <label class="create-grocery-name-label">Low on Grocery? </label>-->
+<!--   <select class="create-grocery-low" [ngModel]="groceryLow" (change)="onChangeLow($event)">-->
+<!--    <option class="create-grocery-low-true">True</option>-->
+<!--    <option class="create-grocery-low-false">False</option>-->
+<!--  </select>-->
+<!--  </div>-->
+  <button class="btn create-grocery-btn grocery-input" (click)="onClickSave()">Add New Grocery</button>
 </div>
