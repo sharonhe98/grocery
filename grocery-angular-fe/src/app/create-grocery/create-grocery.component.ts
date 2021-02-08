@@ -13,6 +13,8 @@ export class CreateGroceryComponent implements OnInit {
   groceryName;
   groceryAmount;
   groceryDesc;
+  @Input()
+  addGrocery;
 
   constructor(
     private groceryService: GroceryService
@@ -34,12 +36,14 @@ export class CreateGroceryComponent implements OnInit {
   }
 
   onClickSave() {
-    this.groceryService.addGrocery({
+    const newGrocery = {
       name: this.groceryName,
       amount: this.groceryAmount,
       desc: this.groceryDesc,
       low: false
-    });
+    };
+    this.groceryService.addGrocery(newGrocery);
+    this.addGrocery(newGrocery);
   }
 
 }

@@ -20,6 +20,9 @@ export class GroceryItemComponent implements OnInit {
   desc = '';
   low = false;
 
+  @Input()
+  deleteGrocery;
+
   constructor(
     private groceryService: GroceryService
   ) {
@@ -61,6 +64,7 @@ export class GroceryItemComponent implements OnInit {
 
   onClickDelete(): void {
     this.groceryService.deleteGrocery(this.groceryItem._id);
+    this.deleteGrocery(this.groceryItem._id);
   }
 }
 

@@ -1,7 +1,7 @@
 <h1>Grocery App</h1>
 <div class="create-grocery container">
-  <app-create-grocery class="create-grocery"></app-create-grocery>
+  <app-create-grocery class="create-grocery" [addGrocery]="addGrocery"></app-create-grocery>
 </div>
 <div class="grocery-list container">
-  <app-grocery-list></app-grocery-list>
+  <app-grocery-list [groceryList]="groceryList" [deleteGrocery]="deleteGrocery"></app-grocery-list>
 </div>
