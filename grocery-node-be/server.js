@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 
 require('./data/db')();
 
@@ -13,6 +14,14 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
+
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'HLFtw1ce@t!me',
+    rolling: true,
+    cookie: { maxAge: 1800000 }
+}));
 
 app.get('/', function(req, res) {
     console.log(res);

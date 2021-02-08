@@ -14,6 +14,10 @@ const findUserByUsername = (username) => {
     return userModel.findOne({username});
 };
 
+const findUserByCredentials = (username, password) => {
+    return userModel.findOne({username, password});
+};
+
 const updateUser = (userId, user) => {
     return userModel.updateOne({_id: userId}, user, {new: true, useFindAndModify: false});
 };
@@ -30,6 +34,7 @@ module.exports = {
     findAllUsers,
     findUserById,
     findUserByUsername,
+    findUserByCredentials,
     updateUser,
     deleteUser,
     addUser

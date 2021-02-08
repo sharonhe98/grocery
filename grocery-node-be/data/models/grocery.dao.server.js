@@ -19,7 +19,7 @@ addGrocery = (grocery) => {
 }
 
 deleteGrocery = (groceryId) => {
-    return groceryModel.remove({_id: groceryId});
+    return groceryModel.deleteOne({_id: groceryId});
 }
 
 module.exports = {

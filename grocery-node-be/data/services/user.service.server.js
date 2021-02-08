@@ -8,6 +8,9 @@ module.exports = function (app) {
 
     const findAllUsers = (req, res) => {
         userModel.findAllUsers().then(users => {
+            for (let i = 0; i < users.length; i++) {
+                users[i].password = '';
+            }
             res.send(users);
         })
     };
@@ -44,8 +47,31 @@ module.exports = function (app) {
     const addUser = (req, res) => {
         let user = req.body;
         userModel.addUser(user).then(newUser => {
+            res.session['currentUser'] = user;
             res.send(newUser);
         });
+    };
+
+    const login = (req, res) => {
+        const user = req.body;
+        let username = user.username;
+        let pw = user.password;
+        userModel.findUserByCredentials(username, pw).then(curUser => {
+            if (curUser === null) {
+                res.status(404);
+                res.send("Failed Login");
+            } else {
+                curUser.password = '';
+                req.session['currentUser'] = curUser;
+                res.json(curUser);
+            }
+        })
+    }
+
+    const logout = (req, res) => {
+        req.session.destroy((err) => {
+            res.send("Logged out");
+        })
     };
 
     app.get('/api/users', findAllUsers);
@@ -54,4 +80,6 @@ module.exports = function (app) {
     app.put('/api/users/:uid', jsonParser, updateUser);
     app.delete('/api/users/:uid', jsonParser, deleteUser);
     app.post('/api/users', jsonParser, addUser);
+    app.post('/api/users', jsonParser, login);
+    app.post('/api/users', jsonParser, logout);
 };
