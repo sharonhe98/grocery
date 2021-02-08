@@ -18,9 +18,14 @@ addGrocery = (grocery) => {
     return groceryModel.create(grocery);
 }
 
+deleteGrocery = (groceryId) => {
+    return groceryModel.remove({_id: groceryId});
+}
+
 module.exports = {
     findAllGroceries,
     findGroceryById,
     updateGrocery,
     addGrocery,
+    deleteGrocery
 };

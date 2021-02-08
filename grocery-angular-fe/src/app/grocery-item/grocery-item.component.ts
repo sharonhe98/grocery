@@ -58,5 +58,9 @@ export class GroceryItemComponent implements OnInit {
     });
     this.editing = false;
   }
+
+  onClickDelete(): void {
+    this.groceryService.deleteGrocery(this.groceryItem._id);
+  }
 }
 

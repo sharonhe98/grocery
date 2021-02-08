@@ -13,7 +13,6 @@ export class CreateGroceryComponent implements OnInit {
   groceryName;
   groceryAmount;
   groceryDesc;
-  groceryLow;
 
   constructor(
     private groceryService: GroceryService
@@ -34,16 +33,12 @@ export class CreateGroceryComponent implements OnInit {
     this.groceryDesc = event.target.value;
   }
 
-  onChangeLow(event) {
-    this.groceryLow = event.target.value.toLowerCase() === 'true';
-  }
-
   onClickSave() {
     this.groceryService.addGrocery({
       name: this.groceryName,
       amount: this.groceryAmount,
       desc: this.groceryDesc,
-      low: this.groceryLow
+      low: false
     });
   }
 

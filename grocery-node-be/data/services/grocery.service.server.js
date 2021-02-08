@@ -32,10 +32,18 @@ module.exports = function (app) {
         groceryModel.addGrocery(grocery).then(groc => {
             res.send(groc);
         })
+    };
+
+    const deleteGrocery = (req, res) => {
+        let groceryId = mongoose.Types.ObjectId(req.params.gid);
+        groceryModel.deleteGrocery(groceryId).then(grocery => {
+            res.send(grocery);
+        });
     }
 
     app.get('/api/groceries', findAllGroceries);
     app.get('/api/groceries/:gid', findGroceryById);
     app.put('/api/groceries/:gid', jsonParser, updateGrocery);
     app.post('/api/groceries', jsonParser, addGrocery);
+    app.delete('/api/groceries/:gid', jsonParser, deleteGrocery);
 };

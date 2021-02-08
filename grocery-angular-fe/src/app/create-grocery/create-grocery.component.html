@@ -13,12 +13,5 @@
     <label class="create-grocery-name-label grocery-input-label col-2">Description of Grocery: </label>
     <input class="create-grocery-name-input col-md" type="text" [ngModel]="groceryDesc" (change)="onChangeDesc($event)">
   </div>
-<!--  <div class="create-grocery-low">-->
-<!--    <label class="create-grocery-name-label">Low on Grocery? </label>-->
-<!--   <select class="create-grocery-low" [ngModel]="groceryLow" (change)="onChangeLow($event)">-->
-<!--    <option class="create-grocery-low-true">True</option>-->
-<!--    <option class="create-grocery-low-false">False</option>-->
-<!--  </select>-->
-<!--  </div>-->
   <button class="btn create-grocery-btn grocery-input" (click)="onClickSave()">Add New Grocery</button>
 </div>

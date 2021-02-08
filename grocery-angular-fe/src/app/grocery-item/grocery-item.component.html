@@ -17,5 +17,6 @@
     <option class="grocery-item-low-false">False</option>
   </select>
   <button class="edit-grocery-item-btn btn col-md" (click)="onClickEdit()" [hidden]="editing">Edit Item</button>
+  <button class="delete-grocery-item-btn btn col-md" (click)="onClickDelete()" [hidden]="editing">Delete Item</button>
   <button class="save-grocery-item-btn btn col-md" (click)="onClickSave()" [hidden]="!editing">Save</button>
 </div>

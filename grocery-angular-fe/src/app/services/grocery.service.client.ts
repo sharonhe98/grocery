@@ -28,5 +28,9 @@ export class GroceryService {
   addGrocery(grocery): void {
     this.http.post('http://localhost:3000/api/groceries', grocery).subscribe();
   }
+
+  deleteGrocery(groceryId): void {
+    this.http.delete(`http://localhost:3000/api/groceries/${groceryId}`).subscribe();
+  }
 }
 
