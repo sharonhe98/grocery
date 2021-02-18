@@ -4,7 +4,7 @@ import { groceryMock } from './grocery.mock.client';
 import { HttpClient } from '@angular/common/http';
 import {Subscription} from 'rxjs';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class GroceryService {
 
   constructor(
@@ -14,6 +14,16 @@ export class GroceryService {
   findAllGroceries(): Grocery[] {
     const groceryList: Grocery[] = [];
     this.http.get('http://localhost:3000/api/groceries').subscribe((res: Response) => {
+      (res as unknown as Grocery[]).map((gro: Grocery) => {
+        groceryList.push(gro);
+      });
+    });
+    return groceryList;
+  }
+
+  findGroceriesByUserId(uid): Grocery[] {
+    const groceryList: Grocery[] = [];
+    this.http.get(`http://localhost:3000/api/groceries/${uid}`).subscribe((res: Response) => {
       (res as unknown as Grocery[]).map((gro: Grocery) => {
         groceryList.push(gro);
       });

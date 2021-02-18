@@ -6,6 +6,10 @@ findAllGroceries = () => {
     return groceryModel.find();
 };
 
+findGroceriesByUserId = (uid) => {
+    return groceryModel.find({userId: uid});
+};
+
 findGroceryById = (id) => {
     return groceryModel.find({_id: id});
 }
@@ -20,12 +24,13 @@ addGrocery = (grocery) => {
 
 deleteGrocery = (groceryId) => {
     return groceryModel.deleteOne({_id: groceryId});
-}
+};
 
 module.exports = {
     findAllGroceries,
     findGroceryById,
     updateGrocery,
     addGrocery,
-    deleteGrocery
+    deleteGrocery,
+    findGroceriesByUserId
 };

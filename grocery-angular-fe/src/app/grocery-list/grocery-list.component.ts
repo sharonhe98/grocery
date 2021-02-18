@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import {GroceryService} from '../services/grocery.service.client';
 import {Grocery} from '../models/grocery/grocery.model.client';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-grocery-list',
@@ -25,7 +26,8 @@ export class GroceryListComponent implements OnInit, OnChanges {
 
   constructor(
     private groceryService: GroceryService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private cs: CookieService,
   ){
     setInterval(() => cd.detectChanges(), 1);
   }
@@ -37,6 +39,8 @@ export class GroceryListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // this.groceryList = this.groceryService.findAllGroceries();
+    let userId = this.cs.get('id');
+    this.groceryList = this.groceryService.findGroceriesByUserId(userId);
   }
 
 }

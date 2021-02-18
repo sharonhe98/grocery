@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import {GroceryService} from "../services/grocery.service.client";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-create-grocery',
@@ -17,7 +18,8 @@ export class CreateGroceryComponent implements OnInit {
   addGrocery;
 
   constructor(
-    private groceryService: GroceryService
+    private groceryService: GroceryService,
+    private cs: CookieService,
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +38,12 @@ export class CreateGroceryComponent implements OnInit {
   }
 
   onClickSave() {
+    const uid = this.cs.get('id');
     const newGrocery = {
       name: this.groceryName,
       amount: this.groceryAmount,
       desc: this.groceryDesc,
+      userId: uid,
       low: false
     };
     this.groceryService.addGrocery(newGrocery);

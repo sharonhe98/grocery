@@ -1,0 +1,11 @@
+<h3>Log In</h3>
+<div class="login-username row">
+  <label class="login-username-label col-2">Username:</label>
+  <input type="text" (change)="onChangeUsername($event)">
+</div>
+<div class="login-password row">
+  <label class="login-password-label col-2">Password:</label>
+  <input type="text" (change)="onChangePassword($event)">
+</div>
+<button class="login-btn btn" (click)="onClickLogin()">Log In</button>
+<div class="login-register-redirect">Don't have an account? Click here to register.</div>

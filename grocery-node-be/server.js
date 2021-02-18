@@ -30,5 +30,6 @@ app.get('/', function(req, res) {
 
 const groceryService = require('./data/services/grocery.service.server');
 groceryService(app);
-
+const userService = require('./data/services/user.service.server');
+userService(app);
 app.listen(3000);

@@ -8,9 +8,9 @@ module.exports = function (app) {
 
     const findAllUsers = (req, res) => {
         userModel.findAllUsers().then(users => {
-            for (let i = 0; i < users.length; i++) {
-                users[i].password = '';
-            }
+            // for (let i = 0; i < users.length; i++) {
+            //     users[i].password = '';
+            // }
             res.send(users);
         })
     };
@@ -57,21 +57,30 @@ module.exports = function (app) {
         let username = user.username;
         let pw = user.password;
         userModel.findUserByCredentials(username, pw).then(curUser => {
-            if (curUser === null) {
-                res.status(404);
-                res.send("Failed Login");
-            } else {
+            if (curUser) {
                 curUser.password = '';
                 req.session['currentUser'] = curUser;
-                res.json(curUser);
+                console.log("response: " + curUser);
+                console.log("current response: " + req.session['currentUser']);
+                res.send(curUser);
+            } else {
+                res.sendStatus(403);
             }
         })
     }
 
     const logout = (req, res) => {
         req.session.destroy((err) => {
-            res.send("Logged out");
+            if (err) {
+                console.log(err)
+            } else {
+                res.send({msg: 'logged out'})
+            }
         })
+    };
+
+    const currentUser = (req, res) => {
+        res.send(req.session['username']);
     };
 
     app.get('/api/users', findAllUsers);
@@ -80,6 +89,8 @@ module.exports = function (app) {
     app.put('/api/users/:uid', jsonParser, updateUser);
     app.delete('/api/users/:uid', jsonParser, deleteUser);
     app.post('/api/users', jsonParser, addUser);
-    app.post('/api/users', jsonParser, login);
-    app.post('/api/users', jsonParser, logout);
+    app.post('/api/login', jsonParser, login);
+    app.post('/api/logout', logout);
+    app.post('/api/current', currentUser);
+    app.get('/api/current', currentUser);
 };
