@@ -1,5 +1,5 @@
 <h1>Grocery App</h1>
-<button class="logout-btn btn" [hidden]="currentUser._id.length === 0"
+<button class="logout-btn btn" [hidden]="currentUser === undefined"
 (click)="onClickLogout()">Log Out</button>
 <!--<app-login class="login" [hidden]="currentUser !== undefined && currentUser !== null" [clickLogin]="onClickLogin"></app-login>-->
 <!--<div class="create-grocery container" [hidden]="currentUser === undefined || currentUser === null">-->
@@ -12,8 +12,8 @@
 <!--  <div><a routerLink="/login" routerLinkActive="active"-->
 <!--          [hidden]="currentUser._id.length > 0">log in</a></div>-->
   <div><a routerLink="/groceries" routerLinkActive="active"
-          [hidden]="currentUser._id.length === 0">groceries</a></div>
+          [hidden]="currentUser === undefined">groceries</a></div>
   <div><a routerLink="/create-grocery" routerLinkActive="active"
-          [hidden]="currentUser._id.length === 0">Create New Grocery</a></div>
+          [hidden]="currentUser === undefined">Create New Grocery</a></div>
 </nav>
 <router-outlet></router-outlet>

@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit {
     });
     this.cs.set('username', loggedInUser.username);
     this.cs.set('id', loggedInUser._id);
-    this.router.navigate(['groceries']);
+    this.router.navigate(['']);
   };
 }

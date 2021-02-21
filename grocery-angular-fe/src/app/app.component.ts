@@ -24,16 +24,16 @@ export class AppComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.currentUser = {
-      username: this.cookieService.get('username'),
-      _id: this.cookieService.get('id'),
-    }
-    if (this.currentUser._id.length === 0) {
+    if (this.cookieService.check('id')){
+      this.currentUser = {
+        username: this.cookieService.get('username'),
+        _id: this.cookieService.get('id'),
+      };
+      this.currentPage = 'groceries' || 'create-grocery';
+      this.router.navigate([this.currentPage]);
+    } else {
       this.currentPage = 'login';
       this.router.navigate(['login']);
-    } else {
-        this.currentPage = 'groceries' || 'create-grocery';
-        this.router.navigate([this.currentPage]);
     }
   }
 
@@ -50,7 +50,6 @@ export class AppComponent implements OnInit {
     this.cookieService.delete('username');
     this.cookieService.delete('id');
     this.currentUser = undefined;
-    console.log(this.currentUser);
     this.router.navigate(['login']);
   }
 }
