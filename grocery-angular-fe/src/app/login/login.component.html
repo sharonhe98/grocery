@@ -1,11 +1,12 @@
-<h3>Log In</h3>
-<div class="login-username row">
+<h3 [hidden]="cs.get('id').length > 0">Log In</h3>
+<div class="login-username row" [hidden]="cs.get('id').length > 0">
   <label class="login-username-label col-2">Username:</label>
   <input type="text" (change)="onChangeUsername($event)">
 </div>
-<div class="login-password row">
+<div class="login-password row" [hidden]="cs.get('id').length > 0">
   <label class="login-password-label col-2">Password:</label>
   <input type="text" (change)="onChangePassword($event)">
 </div>
-<button class="login-btn btn" (click)="onClickLogin()">Log In</button>
-<div class="login-register-redirect">Don't have an account? Click here to register.</div>
+<button class="login-btn btn" (click)="onClickLogin()" [hidden]="cs.get('id').length > 0">Log In</button>
+<div class="login-register-redirect"
+     [hidden]="cs.get('id').length > 0">Don't have an account? Click here to register.</div>

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service.client";
 import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private us: UserService,
     private cs: CookieService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,5 +41,6 @@ export class LoginComponent implements OnInit {
     });
     this.cs.set('username', loggedInUser.username);
     this.cs.set('id', loggedInUser._id);
+    this.router.navigate(['groceries']);
   };
 }

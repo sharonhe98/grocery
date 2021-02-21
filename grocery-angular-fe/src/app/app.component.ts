@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GroceryService} from "./services/grocery.service.client";
 import {UserService} from "./services/user.service.client";
 import {CookieService} from "ngx-cookie-service";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -12,21 +13,28 @@ export class AppComponent implements OnInit {
   title = 'Grocery App';
   groceryList;
   currentUser;
+  currentPage;
 
   constructor(
     private groceryService: GroceryService,
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private ar: ActivatedRoute,
     ) {}
 
   ngOnInit(): void {
-    console.log(this.currentUser)
     this.currentUser = {
       username: this.cookieService.get('username'),
       _id: this.cookieService.get('id'),
     }
-    // console.log(sessionStorage.getItem('username'));
-    // console.log(sessionStorage.getItem('id'))
+    if (this.currentUser._id.length === 0) {
+      this.currentPage = 'login';
+      this.router.navigate(['login']);
+    } else {
+        this.currentPage = 'groceries' || 'create-grocery';
+        this.router.navigate([this.currentPage]);
+    }
   }
 
   addGrocery = (grocery) => {
@@ -37,18 +45,12 @@ export class AppComponent implements OnInit {
     this.groceryList = this.groceryList.filter(grocery => grocery._id !== groceryId);
   };
 
-  onClickLogin = (user) => {
-    const loggedInUser = this.userService.login(user);
-    this.cookieService.set('username', loggedInUser.username);
-    this.cookieService.set('id', loggedInUser._id);
-    this.currentUser = loggedInUser;
-  };
-
   onClickLogout = () => {
     this.userService.logout();
     this.cookieService.delete('username');
     this.cookieService.delete('id');
     this.currentUser = undefined;
     console.log(this.currentUser);
+    this.router.navigate(['login']);
   }
 }
