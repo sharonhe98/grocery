@@ -1,12 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/grocery/user.model.client";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private cs: CookieService
   ) {}
 
   currentUser(user) {
@@ -27,6 +29,7 @@ export class UserService {
     let loggedInUser;
     return this.http.post('http://localhost:3000/api/login', newUser).subscribe(nu => {
       loggedInUser = nu as User;
+      this.cs.set('currentUser', JSON.stringify(loggedInUser), {path: '/'});
       console.log(loggedInUser)
     });
   };
@@ -34,9 +37,9 @@ export class UserService {
   logout() {
     this.http.post('http://localhost:3000/api/logout', {responseType: 'string',
       withCredentials: true}).subscribe();
-    // sessionStorage.removeItem('username');
-    // sessionStorage.removeItem('role');
-    // sessionStorage.removeItem('id');
-    // sessionStorage.clear();
+    this.cs.delete('username');
+    this.cs.delete('id');
+    this.cs.delete('role');
+    this.cs.deleteAll();
   };
 }

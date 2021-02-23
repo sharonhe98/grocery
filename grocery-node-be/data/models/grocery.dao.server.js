@@ -7,6 +7,7 @@ findAllGroceries = () => {
 };
 
 findGroceriesByUserId = (uid) => {
+    console.log('is this thing hitting???' + uid);
     return groceryModel.find({userId: uid});
 };
 

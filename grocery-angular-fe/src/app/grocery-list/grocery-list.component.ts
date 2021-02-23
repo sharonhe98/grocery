@@ -39,7 +39,8 @@ export class GroceryListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // this.groceryList = this.groceryService.findAllGroceries();
-    let userId = this.cs.get('id');
+    let userId = JSON.parse(this.cs.get('currentUser'))._id;
+    console.log(userId)
     this.groceryList = this.groceryService.findGroceriesByUserId(userId);
   }
 

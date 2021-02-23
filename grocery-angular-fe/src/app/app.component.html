@@ -11,9 +11,11 @@
 <nav>
 <!--  <div><a routerLink="/login" routerLinkActive="active"-->
 <!--          [hidden]="currentUser._id.length > 0">log in</a></div>-->
-  <div><a routerLink="/groceries" routerLinkActive="active"
-          [hidden]="currentUser === undefined">groceries</a></div>
-  <div><a routerLink="/create-grocery" routerLinkActive="active"
-          [hidden]="currentUser === undefined">Create New Grocery</a></div>
+  <div><a [hidden]="currentUser === undefined"
+    [routerLink]="currentUser && [currentUser._id, 'groceries']" routerLinkActive="active"
+          >groceries</a></div>
+  <div><a  [hidden]="currentUser === undefined"
+    [routerLink]="currentUser && [currentUser._id, 'create-grocery']" routerLinkActive="active"
+         >Create New Grocery</a></div>
 </nav>
 <router-outlet></router-outlet>

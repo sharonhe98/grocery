@@ -24,12 +24,12 @@ export class AppComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    if (this.cookieService.check('id')){
-      this.currentUser = {
-        username: this.cookieService.get('username'),
-        _id: this.cookieService.get('id'),
-      };
-      this.currentPage = 'groceries' || 'create-grocery';
+    console.log(this.cookieService.getAll())
+    if (this.cookieService.check('currentUser')){
+      let cu = JSON.parse(this.cookieService.get('currentUser'))
+      console.log(cu)
+      this.currentUser = cu;
+      this.currentPage = cu._id || cu._id + '/groceries' || cu._id + '/create-grocery';
       this.router.navigate([this.currentPage]);
     } else {
       this.currentPage = 'login';
@@ -47,8 +47,6 @@ export class AppComponent implements OnInit {
 
   onClickLogout = () => {
     this.userService.logout();
-    this.cookieService.delete('username');
-    this.cookieService.delete('id');
     this.currentUser = undefined;
     this.router.navigate(['login']);
   }

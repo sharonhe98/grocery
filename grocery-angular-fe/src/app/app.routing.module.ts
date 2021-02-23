@@ -7,9 +7,9 @@ import {AppComponent} from "./app.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: '', component: AppComponent, pathMatch: 'full'},
-  {path: 'groceries', component: GroceryListComponent},
-  {path: 'create-grocery', component: CreateGroceryComponent},
+  {path: ':uid', component: GroceryListComponent, pathMatch: 'full'},
+  {path: ':uid/groceries', component: GroceryListComponent},
+  {path: ':uid/create-grocery', component: CreateGroceryComponent},
 ];
 
 @NgModule({

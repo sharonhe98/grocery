@@ -38,7 +38,7 @@ export class CreateGroceryComponent implements OnInit {
   }
 
   onClickSave() {
-    const uid = this.cs.get('id');
+    const uid = JSON.parse(this.cs.get('currentUser'))._id;
     const newGrocery = {
       name: this.groceryName,
       amount: this.groceryAmount,
@@ -47,7 +47,7 @@ export class CreateGroceryComponent implements OnInit {
       low: false
     };
     this.groceryService.addGrocery(newGrocery);
-    this.addGrocery(newGrocery);
+    // this.addGrocery(newGrocery);
   }
 
 }

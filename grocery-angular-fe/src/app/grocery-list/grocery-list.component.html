@@ -1,4 +1,4 @@
-<div class="grocery-list-container container" [hidden]="cs.get('id').length === 0">
+<div class="grocery-list-container container" [hidden]="cs.get('currentUser').length === 0">
   <h3>Groceries:</h3>
   <div class="grocery-list" *ngFor="let grocery of groceryList">
     <app-grocery-item [groceryItem]="grocery" [deleteGrocery]="deleteGrocery"></app-grocery-item>

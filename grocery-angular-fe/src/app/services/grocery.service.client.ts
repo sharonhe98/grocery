@@ -23,10 +23,13 @@ export class GroceryService {
 
   findGroceriesByUserId(uid): Grocery[] {
     const groceryList: Grocery[] = [];
-    this.http.get(`http://localhost:3000/api/groceries/${uid}`).subscribe((res: Response) => {
+    console.log(uid)
+    this.http.get(`http://localhost:3000/api/${uid}/groceries/`).subscribe((res: Response) => {
       (res as unknown as Grocery[]).map((gro: Grocery) => {
+        console.log(gro);
         groceryList.push(gro);
       });
+      console.log(res)
     });
     return groceryList;
   }
