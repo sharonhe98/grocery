@@ -14,15 +14,15 @@ module.exports = function (app) {
     };
 
     const findGroceriesByUserId = (req, res) => {
-        let uid = req.session['currentSession']._id;
-        if (uid || req.session['currentSession'].role === 'ADMIN') {
+        let uid = req.params['uid'];
+        // if (uid || req.session['currentSession'].role === 'ADMIN') {
             groceryModel.findGroceriesByUserId(uid).then(groceries => {
                 res.send(groceries);
             })
-        } else {
-            res.status(404);
-            res.send("Cannot access this list");
-        }
+        // } else {
+        //     res.status(404);
+        //     res.send("Cannot access this list");
+        // }
     };
 
     const findGroceryById = (req, res) => {
@@ -48,16 +48,16 @@ module.exports = function (app) {
 
     const addGrocery = (req, res) => {
         let grocery = req.body;
-        let uid = req.session['currentSession']._id;
-        let userId = grocery.userId;
-        if (uid === userId || req.session['currentSession'].role === 'ADMIN') {
+        // let uid = req.session['currentSession']._id;
+        // let userId = grocery.userId;
+        // if (uid === userId || req.session['currentSession'].role === 'ADMIN') {
             groceryModel.addGrocery(grocery).then(groc => {
                 res.send(groc);
             })
-        } else {
-            res.status(404);
-            res.send("Cannot add this grocery");
-        }
+        // } else {
+        //     res.status(404);
+        //     res.send("Cannot add this grocery");
+        // }
     };
 
     const deleteGrocery = (req, res) => {
@@ -76,7 +76,7 @@ module.exports = function (app) {
 
     app.get('/api/groceries', findAllGroceries);
     app.get('/api/groceries/:gid', findGroceryById);
-    app.get('/api/groceries/', findGroceriesByUserId);
+    app.get('/api/groceries/:uid', findGroceriesByUserId);
     app.put('/api/groceries/:gid', jsonParser, updateGrocery);
     app.post('/api/groceries', jsonParser, addGrocery);
     app.delete('/api/groceries/:gid', jsonParser, deleteGrocery);
